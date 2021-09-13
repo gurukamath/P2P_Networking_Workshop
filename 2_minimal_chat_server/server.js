@@ -23,9 +23,9 @@ const server = net.createServer(function (socket) {
 
   socket.on('close', () => {
     process.stdout.write("Client disconnected\n");
+    process.stdout.write(`Remaining client connections: ${activeSockets.size}\n`);
   })
 })
-
 
 
 server.listen(8124, () => {
