@@ -2,17 +2,14 @@
 
 const net = require("net");
 
-const client = new net.Socket();
+const socket = net.connect(8124, 'localhost')
 
-client.connect(8124, 'localhost', () => {
-    console.log("Connected....");
-    client.write("Hello Server!");
+process.stdin.on('data', function (data) {
+  socket.write(data);
 })
 
-client.on('data', (data) => {
-    console.log(data.toString());
+socket.on('data', function (data) {
+  process.stdout.write("The following message was received from the server...\n");
+  process.stdout.write(data);
 })
 
-client.on('close', () => {
-    console.log('Connection closed');
-})

@@ -2,25 +2,24 @@
 
 const net = require("net");
 
-const server = net.createServer((c) => {
+var server = net.createServer(function (socket) {
+  console.log('new connection')
 
-    console.log('client connected');
+  socket.on('data', function (data) {
+    process.stdout.write("New message received from client....");
+    socket.write(`I received the data that you sent: ${data}`);
+    process.stdout.write("Response has been sent.\n");
+  })
 
-    c.on('data', (data) => {
-        console.log(data.toString());
-        c.write('Hello Client!');
-    })
+  socket.on('close', () => {
+    process.stdout.write("Client disconnected\n");
+  })
+})
 
-    c.on('end', () => {
-        console.log('client disconnected');
-      });
 
-  });
 
-  server.on('error', (err) => {
-    throw err;
-  });
+server.listen(8124, () => {
+  console.log('Server listening on port 8124');
+});
 
-  server.listen(8124, () => {
-    console.log('Server listening on port 8124');
-  });
+
