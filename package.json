@@ -4,6 +4,7 @@
   "description": "This is my solution to the P2P Networking Workshop",
   "main": "index.js",
   "dependencies": {
+    "duplex-json-stream": "^1.0.1",
     "stream-set": "^1.1.0"
   },
   "devDependencies": {},
