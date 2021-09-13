@@ -1,0 +1,23 @@
+{
+  "name": "p2p_networking_workshop",
+  "version": "1.0.0",
+  "description": "This is my solution to the P2P Networking Workshop",
+  "main": "index.js",
+  "dependencies": {
+    "stream-set": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurukamath/P2P_Networking_Workshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gurukamath/P2P_Networking_Workshop/issues"
+  },
+  "homepage": "https://github.com/gurukamath/P2P_Networking_Workshop#readme"
+}
