@@ -17,6 +17,7 @@ const t = topology(myAddr, peerAddr);
 
 let msgIndex = 0;
 let indexTracker = [];
+const id = Math.random();
 
 t.on('connection', (socket, id) => {
     console.log(`New Connection: ${id}`);
@@ -25,15 +26,15 @@ t.on('connection', (socket, id) => {
     
     socket.on('data', (data) => {
 
-        const userInd = _.findIndex(indexTracker, {user: data.user});
+        const userInd = _.findIndex(indexTracker, {id: data.id});
 
         if (userInd === -1 || indexTracker[userInd].msgIndex < data.index){
 
             console.log(`\t${data.user}: ${data.message.replace(/(\r\n|\n|\r)/gm, "")}`);
-            utils.upsert(indexTracker, {user: data.user}, {user: data.user, msgIndex: data.index});
+            utils.upsert(indexTracker, {id: data.id}, {id: data.id, msgIndex: data.index});
             activeSockets.forEach((soc) => {
                 if (soc != socket){
-                    soc.write({user: data.user, message: data.message, index: data.index});
+                    soc.write({user: data.user, id: data.id, message: data.message, index: data.index});
                 }
             })
 
@@ -45,7 +46,7 @@ process.stdin.on('data', (data) => {
     msgIndex++;
     utils.upsert(indexTracker, {user: user}, {user: user, msgIndex: msgIndex});
     activeSockets.forEach(socket => {
-        socket.write({user: user, message: data.toString(), index: msgIndex});
+        socket.write({user: user, id: id, message: data.toString(), index: msgIndex});
 
     })
 })
