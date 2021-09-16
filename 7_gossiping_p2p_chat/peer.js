@@ -51,5 +51,11 @@ process.stdin.on('data', (data) => {
     })
 })
 
+// Testing 
+
+// ./7_gossiping_p2p_chat/peer.js eduardo localhost:3000 localhost:3001
+// ./7_gossiping_p2p_chat/peer.js mafintosh localhost:3001 localhost:3002
+// ./7_gossiping_p2p_chat/peer.js watson localhost:3002
+// ./7_gossiping_p2p_chat/peer.js Guru localhost:3003 localhost:3000 localhost:3002
 
 
